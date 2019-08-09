@@ -38,10 +38,10 @@ class TunerRepository {
         if (doubleEqual(outFrequency, noteFrequencies.first()) || doubleEqual(outFrequency, noteFrequencies.last())) {
             return frequency
         }
-        while (frequency < noteFrequencies.first()) {
+        while (outFrequency < noteFrequencies.first()) {
             outFrequency *= 2
         }
-        while (frequency > noteFrequencies.last()) {
+        while (outFrequency > noteFrequencies.last()) {
             outFrequency /= 2
         }
         return outFrequency
@@ -77,11 +77,11 @@ class TunerRepository {
         return if (frequency < noteFrequencies[index]) {
             val totalDistance = (noteFrequencies[index] - noteFrequencies[index - 1]) / 2
             val calcDistance = (noteFrequencies[index] - frequency)
-            calcDistance / totalDistance
+            - (calcDistance / totalDistance)
         } else {
             val totalDistance = (noteFrequencies[index + 1] - noteFrequencies[index]) / 2
             val calcDistance = (frequency - noteFrequencies[index])
-            - (calcDistance / totalDistance)
+            calcDistance / totalDistance
         }
     }
 
